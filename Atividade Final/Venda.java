@@ -6,7 +6,6 @@ public class Venda {
     private double valorTotal;
     private FormaPagamento formaPagamento;
 
-    // Construtor com os parâmetros necessários
     public Venda(Usuario usuario, List<Produto> produtos, double valorTotal, FormaPagamento formaPagamento) {
         this.usuario = usuario;
         this.produtos = produtos;
@@ -14,7 +13,6 @@ public class Venda {
         this.formaPagamento = formaPagamento;
     }
 
-    // Getters e setters
     public Usuario getUsuario() {
         return usuario;
     }
