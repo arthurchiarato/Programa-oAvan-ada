@@ -7,11 +7,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Database db = new Database();
 
-        // Solicitar e-mail do usuário
+        // e-mail
         System.out.print("Digite o Email do usuário: ");
         String email = scanner.nextLine();
 
-        // Validar se o usuário existe
         Usuario usuario = db.buscarUsuarioPorEmail(email);
         if (usuario == null) {
             System.out.println("Usuário não encontrado.");
@@ -20,7 +19,7 @@ public class Main {
             System.out.println("Usuário encontrado: " + usuario.getNome());
         }
 
-        // Solicitar IDs dos produtos
+        // IDs
         System.out.print("Digite os IDs dos produtos (separados por vírgula): ");
         String[] produtosIdsInput = scanner.nextLine().split(",");
         List<Produto> produtos = new ArrayList<>();
@@ -43,7 +42,7 @@ public class Main {
             return;
         }
 
-        // Solicitar forma de pagamento
+        // Pagamento
         System.out.println("\nEscolha a forma de pagamento:");
         System.out.println("1 - Cartão de Crédito");
         System.out.println("2 - Boleto");
@@ -56,18 +55,17 @@ public class Main {
             return;
         }
 
-        // Simulação de pagamento
         System.out.println("\nAguarde, efetuando pagamento...");
         String chaveAutenticacao = UUID.randomUUID().toString(); // Gerando uma chave única de autenticação
         System.out.println("Pagamento confirmado com sucesso via " + formaPagamento.getClass().getSimpleName() + ". Chave de Autenticação: " + chaveAutenticacao);
 
-        // Calcular valor total
+        //  total
         double valorTotal = 0;
         for (Produto produto : produtos) {
             valorTotal += produto.getPreco();
         }
 
-        // Exibir resumo da venda
+        // resumo da venda
         System.out.println("\nResumo da venda:");
         System.out.println("Cliente: " + usuario.getNome());
         System.out.println("Produtos:");
@@ -77,7 +75,7 @@ public class Main {
         System.out.println("Valor total: R$ " + valorTotal);
         System.out.println("Pagamento: " + formaPagamento.getClass().getSimpleName());
 
-        // Registrar a venda no banco de dados
+        // Registrar no banco de dados
         db.registrarVenda(usuario, produtos, valorTotal, formaPagamento);
 
         System.out.println("\nVenda registrada com sucesso!");
